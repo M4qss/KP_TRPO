@@ -1,0 +1,88 @@
+﻿<Window x:Class="DentIS.MainForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DentIS"
+        mc:Ignorable="d"
+        Title="DentIS" Height="545" Width="912" Background="#FF6CB4B7" Closed="Window_Closed" SizeToContent="WidthAndHeight">
+    <Grid Background="#FFABD9DB">
+        <Rectangle x:Name="form_backer" Fill="#FF6DA5AA" HorizontalAlignment="Left" Height="514" VerticalAlignment="Top" Width="172" Margin="732,0,0,0"/>
+
+        <Canvas Margin="764,-8,-19,273">
+
+            <Rectangle x:Name="date_backer" Fill="#FF247478" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="173" RadiusX="6" Canvas.Left="-32" Canvas.Top="455"/>
+
+            <Rectangle x:Name="btns_backer" Fill="#FF247478" HorizontalAlignment="Left" Height="244" VerticalAlignment="Top" Width="172" RadiusX="6" RadiusY="6" Canvas.Left="-13"/>
+            <Button x:Name="ProceduresBtn" Content="Процедуры" HorizontalAlignment="Center" VerticalAlignment="Top" Width="117" Height="34" Padding="1" FontSize="20" FontFamily="Consolas" Background="#FF6CB4B7" Foreground="White" RenderTransformOrigin="2.626,2.642" Canvas.Top="150"/>
+            <Button x:Name="PatientsBtn" Content="Пациенты" HorizontalAlignment="Center" VerticalAlignment="Top" Width="117" Height="34" Padding="1" FontSize="20" FontFamily="Consolas" Background="#FF6CB4B7" Foreground="White" RenderTransformOrigin="2.626,2.642" Canvas.Top="15" Click="PatientsBtn_Click"/>
+            <Button x:Name="DocumentsBtn" Content="Документы" HorizontalAlignment="Center" VerticalAlignment="Top" Width="117" Height="34" Padding="1" FontSize="20" FontFamily="Consolas" Background="#FF6CB4B7" Foreground="White" RenderTransformOrigin="2.626,2.642" Canvas.Top="105"/>
+            <Button x:Name="JournalBtn" Content="Журнал" HorizontalAlignment="Center" VerticalAlignment="Top" Width="117" Height="34" Padding="1" FontSize="20" FontFamily="Consolas" Background="#FF6CB4B7" Foreground="White" RenderTransformOrigin="2.626,2.642" Canvas.Top="59" Click="JournalBtn_Click"/>
+            <Button x:Name="StaffBtn" Content="Персонал" HorizontalAlignment="Center" VerticalAlignment="Top" Width="117" Height="34" Padding="1" FontSize="20" FontFamily="Consolas" Background="#FF6CB4B7" Foreground="White" RenderTransformOrigin="2.626,2.642" Canvas.Top="196" Click="StaffBtn_Click"/>
+
+        </Canvas>
+        <Label x:Name="dateLabel" Content="" HorizontalAlignment="Left" Margin="745,466,-13,0" VerticalAlignment="Top" RenderTransformOrigin="-0.658,0.192" Width="172" FontSize="14" Foreground="White" FontWeight="Bold"/>
+        <Grid HorizontalAlignment="Left" Height="514" VerticalAlignment="Top" Width="727" Name="PatientsGrid" Visibility="Collapsed">
+            <DataGrid Margin="10,10,330,56" Name="PatientDG" FontFamily="Consolas" SelectionChanged="PatientDG_SelectionChanged" SelectionMode="Single" IsReadOnly="True"></DataGrid>
+            <Rectangle Margin="722,245,-164,166" Fill="#ABD9DB" RadiusX="8" RadiusY="6"></Rectangle>
+            <Button x:Name="PatientAddBtn" Margin="764,253,-153,221" Content="Открыть" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" Click="PatientAddBtn_Click"/>
+            <Button x:Name="PatientResetBtn" Margin="764,298,-153,176" Content="Назад" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" IsEnabled="True" Click="PatientResetBtn_Click"/>
+            <Grid Name="PatientAddDataGrid" HorizontalAlignment="Left" Height="448" Margin="402,10,0,0" VerticalAlignment="Top" Width="315">
+                <DatePicker x:Name="BirthDateDp" HorizontalAlignment="Left" Margin="146,327,0,0" VerticalAlignment="Top" Width="159" FontSize="16" Text="" FontFamily="Consolas"/>
+                <TextBox x:Name="PhoneNumberTb" Margin="14,115,8,306" Background="White" FontSize="18" FontFamily="Consolas"/>
+                <TextBox x:Name="PolicyTb"  Margin="14,293,8,128" Background="White" FontSize="18" FontFamily="Consolas"/>
+                <TextBox x:Name="FIOTb" TextWrapping="Wrap" Margin="14,29,6,365" Background="White" FontSize="18" FontFamily="Consolas"/>
+                <Label Content="Дата рождения:" HorizontalAlignment="Left" Margin="12,325,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="132"/>
+                <Label Content="Полис ОМС:" HorizontalAlignment="Left" Margin="14,264,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="97"/>
+                <Label Content="Адрес:" HorizontalAlignment="Left" Margin="14,147,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="63"/>
+                <Label Content="Номер телефона:" HorizontalAlignment="Left" Margin="12,86,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="141"/>
+                <Label Content="ФИО:" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16"/>
+                <Button x:Name="PatientAddConfirmBtn" Margin="276,408,10,10" Content="✓" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" Click="PatientAddConfirmBtn_Click"/>
+                <Button x:Name="PatientOpenBtn" Margin="51,408,232,10" Content="📝" FontFamily="Consolas" FontSize="20" Background="#FF6CB4B7" Foreground="White"/>
+                <StackPanel Margin="14,408,272,10" Background="#FF6CB4B7"></StackPanel>
+                <Button x:Name="PatientChangeBtn" Margin="14,408,269,10" Content="✒️" FontFamily="Consolas" FontSize="20" Foreground="White" Click="PatientChangeBtn_Click" BorderBrush="#FF707070" Background="#FF6CB4B7"></Button>
+                <Button x:Name="PatientAddDenyBtn" Margin="241,408,45,10" Content="✗" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" Click="PatientAddDenyBtn_Click" RenderTransformOrigin="1.207,-0.7"/>
+
+                <TextBox x:Name="AddressTb" TextWrapping="Wrap" Margin="14,176,8,189" Background="White" FontSize="18" FontFamily="Consolas"/>
+                <Button x:Name="PatientDeleteBtn" Margin="88,408,195,10" Content="🗑️" FontFamily="Consolas" FontSize="20" Background="#FF6CB4B7" Foreground="White" Click="PatientDeleteBtn_Click"/>
+                <Label x:Name="selectedData" Content="Выбранная запись:" HorizontalAlignment="Left" Margin="158,4,0,0" VerticalAlignment="Top" FontFamily="Consolas" Width="151"/>
+            </Grid>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="514" VerticalAlignment="Top" Width="727" Name="JournalGrid" Visibility="Collapsed">
+            <DataGrid Margin="10,10,5,56" Name="JournalDG"></DataGrid>
+            <DatePicker HorizontalAlignment="Left" Margin="754,246,-153,0" VerticalAlignment="Top" Width="116" Height="27"/>
+            <Rectangle Margin="722,245,-164,73" Fill="#ABD9DB" RadiusX="8" RadiusY="6"></Rectangle>
+            <Button x:Name="DateResetBtn" Margin="764,253,-153,221" Content="Сбросить" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" Click="DateResetBtn_Click"/>
+            <DatePicker x:Name="DatePick" HorizontalAlignment="Left" Margin="764,299,-153,0" VerticalAlignment="Top" Width="116" FontFamily="Consolas" FontSize="14" Background="#FF6CB4B7" Foreground="Black" DataContextChanged="DatePick_DataContextChanged"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="514" VerticalAlignment="Top" Width="727" Name="StaffGrid" Visibility="Visible">
+            <DataGrid Margin="10,10,5,56" Name="StaffDG" SelectionChanged="StaffDG_SelectionChanged"></DataGrid>
+            <Rectangle Margin="722,245,-164,165" Fill="#ABD9DB" RadiusX="8" RadiusY="6"></Rectangle>
+            <Button x:Name="StaffOpenBtn" Margin="764,253,-153,221" Content="Открыть" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" Click="StaffOpenBtn_Click"/>
+            <Button x:Name="StaffCloseBtn" Margin="764,298,-153,176" Content="Закрыть" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" Click="StaffCloseBtn_Click"/>
+            <Grid Name="StaffAddGrid" HorizontalAlignment="Left" Height="448" Margin="402,10,0,0" VerticalAlignment="Top" Width="315">
+                <DatePicker x:Name="SBirthDateDp" HorizontalAlignment="Left" Margin="146,327,0,0" VerticalAlignment="Top" Width="159" FontSize="16" Text="" FontFamily="Consolas"/>
+                <TextBox x:Name="StaffPasswordTb" Margin="14,168,8,253" Background="White" FontSize="18" FontFamily="Consolas"/>
+                <TextBox x:Name="SFIOTb" TextWrapping="Wrap" Margin="14,29,6,365" Background="White" FontSize="18" FontFamily="Consolas"/>
+                <Label Content="Дата рождения:" HorizontalAlignment="Left" Margin="12,325,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="132"/>
+                <Label Content="Пароль:" HorizontalAlignment="Left" Margin="14,139,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="141"/>
+                <Label Content="ФИО:" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16"/>
+                <Button x:Name="StaffAddConfirmBtn" Margin="276,408,10,10" Content="✓" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" Click="StaffAddConfirmBtn_Click"/>
+                <StackPanel Margin="14,408,272,10" Background="#FF6CB4B7"></StackPanel>
+                <Button x:Name="StaffChangeBtn" Margin="14,408,269,10" Content="✒️" FontFamily="Consolas" FontSize="20" Foreground="White" BorderBrush="#FF707070" Background="#FF6CB4B7" Click="StaffChangeBtn_Click"/>
+                <Button x:Name="StaffAddDenyBtn" Margin="241,408,45,10" Content="✗" FontFamily="Consolas" FontSize="22" Background="#FF6CB4B7" Foreground="White" RenderTransformOrigin="1.207,-0.7" Click="StaffAddDenyBtn_Click"/>
+
+
+                <Button x:Name="StaffDeleteBtn" Margin="51,408,232,10" Content="🗑️" FontFamily="Consolas" FontSize="20" Background="#FF6CB4B7" Foreground="White" Click="PatientDeleteBtn_Click"/>
+                <Label x:Name="StaffSelectedData" Content="Выбранная запись:" HorizontalAlignment="Left" Margin="158,4,0,0" VerticalAlignment="Top" FontFamily="Consolas" Width="151"/>
+                <Label Content="Логин:" HorizontalAlignment="Left" Margin="14,83,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="141"/>
+                <TextBox x:Name="StaffLoginTb" Margin="14,112,8,309" Background="White" FontSize="18" FontFamily="Consolas"/>
+                <Label Content="Роль:" HorizontalAlignment="Left" Margin="14,195,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="141"/>
+                <ComboBox x:Name="StaffRoleCb" HorizontalAlignment="Left" Margin="14,224,0,0" VerticalAlignment="Top" Width="293" FontFamily="Consolas" FontSize="18" SelectionChanged="StaffRoleCb_SelectionChanged"/>
+                <Label Content="Специализация:" HorizontalAlignment="Left" Margin="14,252,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Width="141"/>
+                <ComboBox x:Name="StaffSpecCb" HorizontalAlignment="Left" Margin="14,281,0,0" VerticalAlignment="Top" Width="293" FontFamily="Consolas" FontSize="18"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
+    
